@@ -4,10 +4,12 @@ Figma 기획서(프런트 `3181:1179`, 어드민 `3181:1178`)를 기준으로 �
 
 | 구분 | 기술 |
 |---|---|
-| Frontend | React 19 + TypeScript + Vite, React Router 7, Tiptap 3 (본문 에디터) |
-| Backend | Java 21, Spring Boot 3.5 (Web / Data JPA / Security / Validation / Mail), Flyway, jsoup |
-| DB | PostgreSQL 17 |
-| Infra | Docker Compose (nginx 로 SPA 서빙 + `/api`, `/uploads` 프록시), Mailpit (개발용 SMTP) |
+| Frontend | Node.js 26 LTS, React 19 + TypeScript + Vite, React Router 7, Tiptap 3 (본문 에디터) |
+| Backend | Java 25 LTS, Spring Boot 4.2 (Web MVC / Data JPA / Security / Validation / Mail), Flyway, jsoup |
+| DB | PostgreSQL 18 |
+| Infra | Docker Compose (nginx 1.30 stable 로 SPA 서빙 + `/api`, `/uploads` 프록시), Mailpit (개발용 SMTP) |
+
+> 버전 기준: CVE 패치가 반영된 LTS 또는 공식 지원 기간 내 버전 (2026-11 기준)
 
 ## 실행
 
@@ -30,9 +32,12 @@ docker compose up -d --build
 
 ```bash
 docker compose up -d db mailpit                      # DB, SMTP 만 실행
-cd backend && mvn spring-boot:run                     # :8080 (Maven 필요)
-cd frontend && npm install && npm run dev             # :5173 (/api 는 8080 으로 프록시)
+cd backend && mvn spring-boot:run                     # :8080 (JDK 25, Maven 3.9 필요)
+cd frontend && npm install && npm run dev             # :5173 (Node.js 26 필요, /api 는 8080 으로 프록시)
 ```
+
+> PostgreSQL 17 → 18 업그레이드 시 기존 DB 볼륨은 그대로 쓸 수 없습니다(데이터 파일 형식이 메이저 버전별로 다름).
+> 개발 데이터는 `docker compose down -v` 로 초기화하고, 보존이 필요하면 17 에서 `pg_dump` 후 18 에서 복원하세요.
 
 ## 구현 화면
 

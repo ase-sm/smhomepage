@@ -15,3 +15,6 @@ backend/data
 .vscode
 .DS_Store
 Thumbs.db
+
+# DB backup dumps
+backup/

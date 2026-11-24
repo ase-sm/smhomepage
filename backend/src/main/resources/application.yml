@@ -24,6 +24,11 @@ spring:
           time_zone: Asia/Seoul
   flyway:
     enabled: true
+  jackson:
+    deserialization:
+      # Jackson 3 부터 기본값이 true 로 변경됨. 누락된 boolean 필드(예: agreed)를 false 로 받아
+      # 400 "요청 형식 오류" 대신 필드별 검증 메시지를 돌려주도록 이전 동작 유지
+      fail-on-null-for-primitives: false
   servlet:
     multipart:
       max-file-size: 10MB

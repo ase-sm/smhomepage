@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<ErrorResponse> handleMaxUpload(MaxUploadSizeExceededException e) {
-        return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE)
+        return ResponseEntity.status(HttpStatus.CONTENT_TOO_LARGE)
                 .body(new ErrorResponse("이미지 용량은 10MB를 넘을 수 없습니다.", Map.of()));
     }
 

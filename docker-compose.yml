@@ -2,7 +2,7 @@ name: smsoft-homepage
 
 services:
   db:
-    image: postgres:17-alpine
+    image: postgres:18-alpine
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${DB_NAME:-homepage}
@@ -10,7 +10,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-homepage}
       TZ: Asia/Seoul
     volumes:
-      - db-data:/var/lib/postgresql/data
+      # PostgreSQL 18 이미지부터 데이터 경로가 /var/lib/postgresql/18/docker 로 변경됨
+      - db-data:/var/lib/postgresql
     ports:
       - "${DB_PORT:-5432}:5432"
     healthcheck:
@@ -22,7 +23,7 @@ services:
   # 개발용 SMTP 서버 (발송 메일은 http://localhost:8025 에서 확인)
   # 운영에서는 MAIL_HOST 등을 실제 SMTP 서버로 지정하고 이 서비스는 제거
   mailpit:
-    image: axllent/mailpit:latest
+    image: axllent/mailpit:v1.34.0
     restart: unless-stopped
     ports:
       - "${MAILPIT_UI_PORT:-8025}:8025"
