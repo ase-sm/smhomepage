@@ -1,0 +1,79 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+}
+
+.modal__message {
+  font-family: var(--font-pretendard);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--gray-90);
+  text-align: center;
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.modal__btn {
+  min-width: 120px;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-family: var(--font-pretendard);
+  font-size: 17px;
+}
+
+.modal__btn--cancel {
+  background: #fff;
+  border: 1px solid var(--gray-60);
+  color: var(--gray-90);
+}
+
+.modal__btn--confirm {
+  background: var(--primary-50);
+  color: #fff;
+}
+
+/* admin */
+.modal--admin .modal {
+  border-radius: 4px;
+}
+.modal--admin .modal__message {
+  font-family: var(--font-noto);
+  font-size: 16px;
+}
+.modal--admin .modal__btn {
+  min-width: 100px;
+  height: 42px;
+  border-radius: 2px;
+  font-family: var(--font-noto);
+  font-size: 16px;
+}
+.modal--admin .modal__btn--cancel {
+  border-color: #c4c4c4;
+  color: #333;
+}
+.modal--admin .modal__btn--confirm {
+  background: var(--dark);
+}

@@ -1,0 +1,226 @@
+/* Footer (Figma 286:45837) */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  font-family: var(--font-pretendard);
+}
+
+/* ---------- 문의 배너 ---------- */
+.footer__banner-wrap {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 1600px;
+  max-width: 100%;
+  padding: 40px 56px;
+  background: var(--bg-primary950);
+  border-radius: 12px;
+}
+
+.footer-banner__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.footer-banner__title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.footer-banner__desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--action-gray200);
+}
+
+.footer-banner__button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.footer-banner__button svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* 아이콘 원본은 #191F28 — 어두운 배너 위에서는 텍스트 색(흰색)으로 표시 */
+.footer-banner__button svg path {
+  fill: currentColor;
+}
+
+.footer-banner__button:hover {
+  border-color: #fff;
+}
+
+/* ---------- 회사 정보 (Figma 140:14864) ---------- */
+.footer__info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  /* 1920 기준 좌우 160px → 콘텐츠 폭 1600px */
+  padding: 48px max(20px, calc((100% - 1600px) / 2)) 80px;
+  background: var(--bg-white);
+  border-top: 1px solid var(--stroke-black10);
+}
+
+.footer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.footer__logo {
+  position: relative;
+  flex-shrink: 0;
+  width: 139.146px;
+  height: 36px;
+}
+
+.footer__logo svg {
+  position: absolute;
+  display: block;
+}
+
+.footer__logo-mark {
+  top: 0;
+  left: 0;
+}
+
+.footer__logo-text {
+  top: 26.7%;
+  left: 31.66%;
+}
+
+/* 원본 이미지에서 'N blog' 영역만 잘라 표시 (Figma 크롭 값 그대로) */
+.footer__blog {
+  position: relative;
+  flex-shrink: 0;
+  width: 71.788px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.footer__blog img {
+  position: absolute;
+  top: -101.77%;
+  left: -70.12%;
+  width: 186.69%;
+  max-width: none;
+  height: 557.52%;
+}
+
+.footer__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.footer__address {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-gray900);
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--stroke-black6);
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.footer__policy {
+  color: var(--text-gray900);
+}
+
+.footer__copy {
+  color: var(--text-gray400);
+}
+
+/* TOP 버튼: 페이지 오른쪽 끝에 붙은 탭 */
+.footer__top-button {
+  position: absolute;
+  top: 31px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  background: #a6afba;
+  border-radius: 12px 0 0 12px;
+  transition: background 0.15s;
+}
+
+.footer__top-button:hover {
+  background: #8b95a1;
+}
+
+.footer__top-button svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    gap: 40px;
+  }
+  .footer-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+  }
+  .footer-banner__title {
+    font-size: 22px;
+  }
+  .footer-banner__desc {
+    font-size: 15px;
+  }
+  .footer__info {
+    padding: 36px 20px 56px;
+  }
+  .footer__address {
+    font-size: 14px;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    white-space: normal;
+  }
+}

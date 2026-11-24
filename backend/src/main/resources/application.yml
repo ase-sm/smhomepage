@@ -1,0 +1,65 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 2h
+      cookie:
+        http-only: true
+        same-site: lax
+
+spring:
+  application:
+    name: smsoft-homepage
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/homepage}
+    username: ${DB_USERNAME:homepage}
+    password: ${DB_PASSWORD:homepage}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Asia/Seoul
+  flyway:
+    enabled: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 12MB
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH:false}
+          starttls:
+            enable: ${MAIL_STARTTLS:false}
+          # 465 포트(SSL) 사용 시 true
+          ssl:
+            enable: ${MAIL_SSL:false}
+          connectiontimeout: 5000
+          timeout: 10000
+          writetimeout: 10000
+
+app:
+  zone: Asia/Seoul
+  upload-dir: ${UPLOAD_DIR:./data/uploads}
+  # 업로드 이미지 리사이즈 기준 가로폭(px)
+  image-max-width: 1600
+  admin:
+    username: ${ADMIN_USERNAME:admin}
+    password: ${ADMIN_PASSWORD:admin1234}
+    display-name: ${ADMIN_DISPLAY_NAME:관리자}
+  seed-sample-news: ${SEED_SAMPLE_NEWS:true}
+  mail:
+    # 문의 접수 담당자 메일 (접수 알림 수신 / 접수 확인 메일 발신·회신 주소)
+    help-address: ${MAIL_HELP_ADDRESS:help@smsoft.kr}
+    company-sender-name: 세명소프트
+    homepage-sender-name: 세명소프트 홈페이지
+    # SMTP 서버가 발신 주소를 제한하는 경우 별도 지정 (미지정 시 help-address 사용)
+    from-address: ${MAIL_FROM_ADDRESS:}

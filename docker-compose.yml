@@ -1,0 +1,68 @@
+name: smsoft-homepage
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-homepage}
+      POSTGRES_USER: ${DB_USERNAME:-homepage}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-homepage}
+      TZ: Asia/Seoul
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # 개발용 SMTP 서버 (발송 메일은 http://localhost:8025 에서 확인)
+  # 운영에서는 MAIL_HOST 등을 실제 SMTP 서버로 지정하고 이 서비스는 제거
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "${MAILPIT_UI_PORT:-8025}:8025"
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/${DB_NAME:-homepage}
+      DB_USERNAME: ${DB_USERNAME:-homepage}
+      DB_PASSWORD: ${DB_PASSWORD:-homepage}
+      MAIL_HOST: ${MAIL_HOST:-mailpit}
+      MAIL_PORT: ${MAIL_PORT:-1025}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_SMTP_AUTH: ${MAIL_SMTP_AUTH:-false}
+      MAIL_STARTTLS: ${MAIL_STARTTLS:-false}
+      MAIL_SSL: ${MAIL_SSL:-false}
+      MAIL_HELP_ADDRESS: ${MAIL_HELP_ADDRESS:-help@smsoft.kr}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin1234}
+      SEED_SAMPLE_NEWS: ${SEED_SAMPLE_NEWS:-true}
+    # 로컬 개발 서버(vite :5173)에서 API 프록시용으로 노출
+    ports:
+      - "${API_PORT:-8080}:8080"
+    volumes:
+      - uploads:/data/uploads
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${WEB_PORT:-3000}:80"
+
+volumes:
+  db-data:
+  uploads:

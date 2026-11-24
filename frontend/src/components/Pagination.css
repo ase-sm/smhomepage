@@ -1,0 +1,71 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-inter);
+  line-height: 1.5;
+  color: var(--gray-70);
+  text-align: center;
+}
+
+.pagination__item.is-active {
+  background: var(--dark);
+  color: #fff;
+}
+
+.pagination__item:disabled {
+  opacity: 0.4;
+}
+
+/* site (Figma Pagination 468:13012) */
+.pagination--site {
+  justify-content: flex-start;
+  gap: 2px;
+}
+.pagination--site .pagination__item {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  font-family: var(--font-pretendard);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+  color: #6a737f;
+}
+.pagination--site .pagination__item svg {
+  display: block;
+  flex-shrink: 0;
+}
+.pagination--site .pagination__item.is-active {
+  background: #eceff3;
+  color: var(--text-primary);
+}
+.pagination--site .pagination__item:not(.is-active):not(:disabled):hover {
+  background: var(--bg-gray);
+}
+.pagination--site .pagination__item:disabled {
+  opacity: 0.3;
+}
+
+/* admin (A-뉴스관리-01) */
+.pagination--admin {
+  gap: 8px;
+  height: 36px;
+}
+.pagination--admin .pagination__item {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--gray-30);
+  border-radius: 3px;
+  font-size: 16px;
+}
+.pagination--admin .pagination__item:not(.is-active):not(:disabled):hover {
+  background: #f4f4f4;
+}

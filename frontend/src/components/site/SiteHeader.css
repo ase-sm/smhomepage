@@ -1,0 +1,241 @@
+/* GNB (Figma 196:37468 / 2Depth 패널 25403:2614) */
+.gnb-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 80px;
+}
+
+.gnb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 80px;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--stroke-black10);
+  font-family: var(--font-pretendard);
+}
+
+/* 콘텐츠 최대 폭 1920px */
+.gnb__inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 1920px;
+  min-height: 80px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ---------- logo ---------- */
+.gnb__logo {
+  position: relative;
+  flex-shrink: 0;
+  width: 139.146px;
+  height: 36px;
+  margin-top: 22px;
+}
+
+.gnb__logo svg {
+  position: absolute;
+  display: block;
+}
+
+.gnb__logo-mark {
+  top: 0;
+  left: 0;
+}
+
+.gnb__logo-text {
+  top: 26.7%;
+  left: 31.66%;
+}
+
+/* ---------- menu ---------- */
+.gnb__right {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.gnb__list {
+  display: flex;
+  gap: 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.gnb__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+}
+
+.gnb__depth1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 72px;
+  margin-top: 4px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text-gray900);
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.gnb__item:hover .gnb__depth1,
+.gnb__depth1.is-active {
+  color: var(--text-primary);
+}
+
+.gnb__depth1 .gnb__external path {
+  transition: fill 0.15s;
+}
+
+.gnb__item:hover .gnb__external path {
+  fill: var(--text-primary);
+}
+
+.gnb__external {
+  display: block;
+  flex-shrink: 0;
+}
+
+.gnb__depth2 {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0 20px;
+  list-style: none;
+}
+
+.gnb.is-open .gnb__depth2 {
+  display: flex;
+}
+
+.gnb__depth2-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text-gray900);
+  white-space: nowrap;
+}
+
+.gnb__depth2-link:hover,
+.gnb__depth2-link.active {
+  background: var(--bg-gray);
+  color: var(--text-primary);
+}
+
+/* ---------- 도입문의 ---------- */
+.gnb__inquiry {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 40px;
+  margin-top: 20px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--action-gray200);
+  border-radius: 4px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-gray800);
+  white-space: nowrap;
+}
+
+.gnb__inquiry svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.gnb__inquiry:hover {
+  border-color: var(--text-gray400);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1500px) {
+  .gnb__list {
+    gap: 0;
+  }
+  .gnb__item {
+    width: auto;
+    min-width: 120px;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .gnb__inner {
+    padding: 0 20px;
+  }
+  .gnb__item {
+    min-width: 0;
+    padding: 0 12px;
+  }
+  .gnb__depth1 {
+    font-size: 17px;
+  }
+}
+
+/* 모바일: 1Depth 가로 스크롤, 2Depth 는 각 페이지 상단 탭으로 이동 */
+@media (max-width: 768px) {
+  .gnb-wrap {
+    height: auto;
+  }
+  .gnb {
+    position: static;
+  }
+  .gnb__inner {
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 0;
+    padding: 0 16px;
+  }
+  .gnb__logo {
+    margin: 12px 0;
+  }
+  .gnb__right {
+    display: contents;
+  }
+  .gnb__inquiry {
+    margin: 0;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 15px;
+  }
+  .gnb__menu {
+    order: 1;
+    flex-basis: 100%;
+    overflow-x: auto;
+  }
+  .gnb__item {
+    padding: 0 10px;
+  }
+  .gnb__item:first-child {
+    padding-left: 0;
+  }
+  .gnb__depth1 {
+    height: 44px;
+    margin: 0;
+    font-size: 15px;
+  }
+  .gnb.is-open .gnb__depth2 {
+    display: none;
+  }
+}
